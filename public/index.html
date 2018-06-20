@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <title>Fingerprint JS Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+</head>
+<body>    
+  <header>
+  	
+  </header>
+	<h1>
+	 	Finger Print Js Test
+	</h1>
+	<div class="mobileFingerPrint">
+		<span style="font-size: 20px;">Finger Print</span>
+		<br>
+		<div id="mfingerprint" style="margin-top: 5px;">
+		</div>
+	</div>
+	<div class="section" id="inputs">
+		<button id="checkAll">Check / Uncheck All</button>
+	</div>
+	<div class="section">
+		<h2>FingerPrint</h2>
+		<p id="fingerprint">
+		</p>
+		<h2>Components</h2>
+		<p id="components">
+		</p>
+	</div>
+
+</body>
+</html>
+
+<style type="text/css">
+@media( min-width: 1px) {
+	.section {
+		width: 100%;
+	}
+
+	.mobileFingerPrint {
+		display: block;
+	}
+
+	#inputs {
+		margin-top: 60px;
+	}
+}
+
+@media( min-width: 768px) {
+	.section {
+		width: 50%;
+	}
+
+	.mobileFingerPrint {
+		display: none;
+	}
+
+	#inputs {
+		margin-top: 0px;
+	}
+}
+body {
+	font-family: 'Arial';
+}
+
+.section {
+	float: left;
+	border: 1px solid #444;
+	border-radius: 4px;
+	box-sizing: border-box;
+    padding: 5px 10px;
+}
+
+#fingerprint {
+	color: blue;
+}
+
+.input-wrapper {
+	padding: 4px;
+}
+
+.input-wrapper input[type="checkbox"] {
+	width: 15px;
+	height: 15px;
+}
+
+.input-wrapper label {
+	margin-left: 4px;
+}
+
+.input-wrapper label:hover, .input-wrapper input[type="checkbox"]:hover {
+	cursor: pointer;
+}
+
+.mobileFingerPrint {
+	position: fixed;
+    background-color: black;
+    color: white;
+    top: 60px;
+    width: 90%;
+    border-radius: 4px;
+    height: 65px;
+    padding: 10px;
+    box-sizing: border-box;
+    left: 50%;
+    transform: translateX(-50%);	
+}
+
+#checkAll {
+	width: 200px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #5326ed;
+    border: none;
+    font-family: 'Arial';
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding-top: 2px;
+}
+</style>
