@@ -33,23 +33,50 @@ var inputs = {
     excludeAudioFP: false,
 }
 
+var combinations = [
+	[
+		'excludeUserAgent', 
+		'excludeLanguage',
+		'excludeScreenResolution',
+		'excludeAvailableScreenResolution',
+		'excludeOpenDatabase',
+		'excludePlatform',
+		'excludeDoNotTrack',
+		'excludeCanvas',
+		'excludeWebGL',
+		'excludeAdBlock',
+		'excludeHasLiedOs',
+		'excludeJsFonts',
+		'excludePlugins',
+		'excludeTouchSupport',
+		'excludeIEPlugins',
+		'excludePixelRatio',
+		'excludeWebGLVendorAndRenderer',
+		'excludeDeviceMemory'
+	], [
+		'excludeUserAgent',
+		'excludeLanguage',
+		'excludeScreenResolution',
+		'excludeAvailableScreenResolution',
+		'excludeDoNotTrack',
+		'excludeAdBlock',
+		'excludeHasLiedLanguages',
+		'excludeHasLiedResolution',
+		'excludeHasLiedOs',
+		'excludeHasLiedBrowser',
+		'excludePlugins',
+		'excludeIEPlugins',
+		'excludeTouchSupport',
+		'excludePixelRatio',
+		//
+		// 'excludeOpenDatabase',
+		// 'excludeCanvas',
+		// 'excludeJsFonts',
+		// 'excludeWebGLVendorAndRenderer'
+	]
+]
+
 var generate = function() {
-	/*new Fingerprint2({
-		excludeScreenResolution: true,
-		excludeAvailableScreenResolution: true,
-		excludeAdBlock: true,
-		excludePixelRatio: true,
-		excludeDoNotTrack: true,
-		///
-		// excludeUserAgent: true,
-		// excludeLanguage: true,
-		// excludeDeviceMemory: true,
-		// excludePlugins: true,
-		// excludeOpenDatabase: true,
-		// excludeJsFonts: true,
-		// excludeCanvas: true,
-		// excludeWebGL: true,
-	})*/
 	new Fingerprint2(inputs).get(function(result, components) {
 		console.log(result) // a hash, representing your device fingerprint
 		console.log(components) // an array of FP components
@@ -85,43 +112,30 @@ var events = function() {
 		generate();
 
 	});
+	
+	var combs = document.getElementsByClassName('comb');
+	for (var c = 0; c < combs.length; c++) {
+		combs[c].addEventListener('click', function() {
 
-	document.getElementById('comb1').addEventListener('click', function() {
-		var comb1 = [
-			'excludeUserAgent', 
-			'excludeLanguage',
-			'excludeScreenResolution',
-			'excludeAvailableScreenResolution',
-			'excludeOpenDatabase',
-			'excludePlatform',
-			'excludeDoNotTrack',
-			'excludeCanvas',
-			'excludeWebGL',
-			'excludeAdBlock',
-			'excludeHasLiedOs',
-			'excludeJsFonts',
-			'excludePlugins',
-			'excludeTouchSupport',
-			'excludeIEPlugins',
-			'excludePixelRatio',
-			'excludeWebGLVendorAndRenderer',
-			'excludeDeviceMemory'
-		]
-
-		// for (var c = 0; c < comb1.length; c++) {
-
-		// }
-		for (var i in inputs) {
-			if (comb1.indexOf(i) > -1) {
-				inputs[i] = true;
-				document.getElementById(i).checked = true;
+			var index = this.dataset.combination - 1;
+			console.log(index);
+			if (combinations[index]) {
+				for (var i in inputs) {
+					if (combinations[index].indexOf(i) > -1) {
+						inputs[i] = true;
+						document.getElementById(i).checked = true;
+					}
+					else {
+						inputs[i] = false;
+						document.getElementById(i).checked = false;
+					}
+				}
 			}
-			else {
-				inputs[i] = false;
-				document.getElementById(i).checked = false;
-			}
-		}
+			generate();
+		});
+	}
 
+	document.getElementById('generate').addEventListener('click', function() {
 		generate();
 	});
 }
