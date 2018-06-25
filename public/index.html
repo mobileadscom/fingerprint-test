@@ -19,6 +19,8 @@
 		</div>
 	</div>
 	<div class="section" id="inputs">
+		<button id="comb1">Combination 1</button>
+		<br>
 		<button id="checkAll">Check / Uncheck All</button>
 	</div>
 	<div class="section">
@@ -108,16 +110,28 @@ body {
     transform: translateX(-50%);	
 }
 
-#checkAll {
+#inputs button {
 	width: 200px;
     height: 30px;
     border-radius: 4px;
-    background-color: #5326ed;
     border: none;
     font-family: 'Arial';
     color: white;
     font-weight: bold;
     font-size: 16px;
     padding-top: 2px;
+    margin: 5px 0px;
+}
+
+#inputs button:hover {
+	cursor: pointer;
+}
+
+#comb1 {
+    background-color: #40B682;
+}
+
+#checkAll {
+    background-color: #5326ed;
 }
 </style>

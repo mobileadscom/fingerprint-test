@@ -63,6 +63,69 @@ var generate = function() {
 	});
 };
 
+var events = function() {
+	document.getElementById('checkAll').addEventListener('click', function() {
+		var hasChecked = false;
+		for (var i in inputs) {
+			if (inputs[i] == true) {
+				hasChecked = true;
+			}
+		}
+
+		for (var i in inputs) {
+			if (hasChecked) {
+				inputs[i] = false;
+				document.getElementById(i).checked = false;
+			}
+			else {
+				inputs[i] = true;
+				document.getElementById(i).checked = true;
+			}
+		}
+		generate();
+
+	});
+
+	document.getElementById('comb1').addEventListener('click', function() {
+		var comb1 = [
+			'excludeUserAgent', 
+			'excludeLanguage',
+			'excludeScreenResolution',
+			'excludeAvailableScreenResolution',
+			'excludeOpenDatabase',
+			'excludePlatform',
+			'excludeDoNotTrack',
+			'excludeCanvas',
+			'excludeWebGL',
+			'excludeAdBlock',
+			'excludeHasLiedOs',
+			'excludeJsFonts',
+			'excludePlugins',
+			'excludeTouchSupport',
+			'excludeIEPlugins',
+			'excludePixelRatio',
+			'excludeWebGLVendorAndRenderer',
+			'excludeDeviceMemory'
+		]
+
+		// for (var c = 0; c < comb1.length; c++) {
+
+		// }
+		for (var i in inputs) {
+			if (comb1.indexOf(i) > -1) {
+				inputs[i] = true;
+				document.getElementById(i).checked = true;
+			}
+			else {
+				inputs[i] = false;
+				document.getElementById(i).checked = false;
+			}
+		}
+
+		generate();
+	});
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 	var wrapper = document.getElementById('inputs');
 
@@ -93,26 +156,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	setTimeout(() => {
 		console.log('start')
 		generate();
-		document.getElementById('checkAll').addEventListener('click', function() {
-			var hasChecked = false;
-			for (var i in inputs) {
-				if (inputs[i] == true) {
-					hasChecked = true;
-				}
-			}
-
-			for (var i in inputs) {
-				if (hasChecked) {
-					inputs[i] = false;
-					document.getElementById(i).checked = false;
-				}
-				else {
-					inputs[i] = true;
-					document.getElementById(i).checked = true;
-				}
-			}
-			generate();
-
-		});
+		events();
 	}, 500);
 });

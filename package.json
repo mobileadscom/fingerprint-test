@@ -32,5 +32,6 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+    "fingerprintjs2": "^1.8.0"
   }
 }
